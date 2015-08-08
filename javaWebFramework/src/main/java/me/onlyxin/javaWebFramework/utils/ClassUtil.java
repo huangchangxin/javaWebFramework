@@ -11,4 +11,17 @@ public class ClassUtil {
 	public static ClassLoader getClassLoader() {
 		return Thread.currentThread().getContextClassLoader();
 	}
+
+	public static Class<?> loadClass(String className, boolean isInitialized) {
+		// TODO Auto-generated method stub
+		Class<?> clazz = null;
+		try {
+			clazz = Class.forName(className, isInitialized, getClassLoader());
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			logger.error("类加载出错");
+			throw new RuntimeException(e);
+		}
+		return clazz;
+	}
 }

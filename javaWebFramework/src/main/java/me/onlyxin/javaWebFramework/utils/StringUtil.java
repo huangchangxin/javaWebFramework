@@ -12,4 +12,9 @@ public class StringUtil {
 	public static boolean isEmpty(String str) {
 		return StringUtils.isEmpty(str);
 	}
+
+	public static boolean isNotEmpty(String str) {
+		// TODO Auto-generated method stub
+		return StringUtils.isNotEmpty(str);
+	}
 }
