@@ -17,4 +17,15 @@ public class DefaultClassScanner implements ClassScanner {
 		}.getClassList();
 	}
 
+	public List<Class<?>> getClassListBySuper(String packageName, final Class<?> interfaceClass) {
+		// TODO Auto-generated method stub
+		return new SuperClassTemplate(packageName, interfaceClass) {
+			@Override
+			public boolean doCheck(Class<?> clazz) {
+				// TODO Auto-generated method stub
+				return interfaceClass.isAssignableFrom(clazz) && !clazz.equals(interfaceClass);
+			}
+		}.getClassList();
+	}
+
 }

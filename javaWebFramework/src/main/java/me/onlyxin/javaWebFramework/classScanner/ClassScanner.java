@@ -7,4 +7,6 @@ public interface ClassScanner {
 
 	//获取指定包下的所有类
 	public abstract List<Class<?>> getClassList(String packageName);
+
+	public abstract List<Class<?>> getClassListBySuper(String packageName, Class<?> interfaceClass);
 }

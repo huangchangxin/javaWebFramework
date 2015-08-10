@@ -3,6 +3,8 @@ package me.onlyxin.javaWebFramework.utils;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import me.onlyxin.javaWebFramework.classScanner.ClassScanner;
+import me.onlyxin.javaWebFramework.classScanner.DefaultClassScanner;
 import me.onlyxin.javaWebFramework.configuration.ConfigHelper;
 
 import org.slf4j.Logger;
@@ -15,6 +17,9 @@ public class InstanceFactory {
 	
 	//缓存实例
 	private static final Map<String, Object> cache = new ConcurrentHashMap<String, Object>();
+	
+	//类扫描器
+	private static final String CLASS_SCANNER = "class_scanner";
 
 	//创建实例
 	@SuppressWarnings("unchecked")
@@ -31,6 +36,10 @@ public class InstanceFactory {
 			cache.put(cacheKey, newInstance);
 		}
 		return newInstance;
+	}
+	
+	public static ClassScanner getClassScanner() {
+		return getInstance(CLASS_SCANNER, DefaultClassScanner.class);
 	}
 	
 }
