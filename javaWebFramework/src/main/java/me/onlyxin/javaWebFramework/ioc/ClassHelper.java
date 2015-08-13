@@ -1,5 +1,6 @@
 package me.onlyxin.javaWebFramework.ioc;
 
+import java.lang.annotation.Annotation;
 import java.util.List;
 
 import me.onlyxin.javaWebFramework.classScanner.ClassScanner;
@@ -26,5 +27,9 @@ public class ClassHelper {
 	public static List<Class<?>> getClassListBySuper(Class<?> interfaceClass) {
 		// TODO Auto-generated method stub
 		return classScanner.getClassListBySuper(basePackage, interfaceClass);
+	}
+	
+	public static List<Class<?>> getClassListByAnnotation(Class<? extends Annotation> annotationClass) {
+		return classScanner.getClassListByAnnotation(basePackage, annotationClass);
 	}
 }
