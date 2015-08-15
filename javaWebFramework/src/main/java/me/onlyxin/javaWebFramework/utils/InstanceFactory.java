@@ -6,6 +6,10 @@ import java.util.concurrent.ConcurrentHashMap;
 import me.onlyxin.javaWebFramework.classScanner.ClassScanner;
 import me.onlyxin.javaWebFramework.classScanner.DefaultClassScanner;
 import me.onlyxin.javaWebFramework.configuration.ConfigHelper;
+import me.onlyxin.javaWebFramework.mvc.DefaultHandlerInvoker;
+import me.onlyxin.javaWebFramework.mvc.DefaultHandlerMapping;
+import me.onlyxin.javaWebFramework.mvc.HandlerInvoker;
+import me.onlyxin.javaWebFramework.mvc.HandlerMapping;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +24,10 @@ public class InstanceFactory {
 	
 	//类扫描器
 	private static final String CLASS_SCANNER = "class_scanner";
+	//处理器映射器
+	private static final String HANDLER_MAPPING = "handler_mapping";
+	//处理器适配器
+	private static final String HANDLER_INVOKER = "handler_invoker";
 
 	//创建实例
 	@SuppressWarnings("unchecked")
@@ -40,6 +48,14 @@ public class InstanceFactory {
 	
 	public static ClassScanner getClassScanner() {
 		return getInstance(CLASS_SCANNER, DefaultClassScanner.class);
+	}
+	
+	public static HandlerMapping getHandlerMapping() {
+		return getInstance(HANDLER_MAPPING, DefaultHandlerMapping.class);
+	}
+	
+	public static HandlerInvoker getHandlerInvoker() {
+		return getInstance(HANDLER_INVOKER, DefaultHandlerInvoker.class);
 	}
 	
 }
