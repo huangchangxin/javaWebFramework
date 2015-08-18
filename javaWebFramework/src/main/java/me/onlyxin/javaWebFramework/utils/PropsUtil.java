@@ -50,4 +50,12 @@ public class PropsUtil {
 		return value;
 	}
 	
+	public static String getString(Properties prop, String key, String defaultValue) {
+		String value = defaultValue;
+		if (prop.containsKey(key)) {
+			value = prop.getProperty(key);
+		}
+		return value;
+	}
+	
 }

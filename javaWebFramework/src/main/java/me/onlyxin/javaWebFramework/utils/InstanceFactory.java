@@ -6,10 +6,14 @@ import java.util.concurrent.ConcurrentHashMap;
 import me.onlyxin.javaWebFramework.classScanner.ClassScanner;
 import me.onlyxin.javaWebFramework.classScanner.DefaultClassScanner;
 import me.onlyxin.javaWebFramework.configuration.ConfigHelper;
+import me.onlyxin.javaWebFramework.mvc.DefaultHandlerExceptionResolver;
 import me.onlyxin.javaWebFramework.mvc.DefaultHandlerInvoker;
 import me.onlyxin.javaWebFramework.mvc.DefaultHandlerMapping;
+import me.onlyxin.javaWebFramework.mvc.DefaultViewResolver;
+import me.onlyxin.javaWebFramework.mvc.HandlerExceptionResolver;
 import me.onlyxin.javaWebFramework.mvc.HandlerInvoker;
 import me.onlyxin.javaWebFramework.mvc.HandlerMapping;
+import me.onlyxin.javaWebFramework.mvc.ViewResolver;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +32,11 @@ public class InstanceFactory {
 	private static final String HANDLER_MAPPING = "handler_mapping";
 	//处理器适配器
 	private static final String HANDLER_INVOKER = "handler_invoker";
+	//处理器适配器
+	private static final String VIEW_RESOLVER = "view_resolver";
+	//异常处理器
+	private static final String HANDLER_EXCEPTION_RESOLVER = "handler_exception_resolver";
+	
 
 	//创建实例
 	@SuppressWarnings("unchecked")
@@ -56,6 +65,16 @@ public class InstanceFactory {
 	
 	public static HandlerInvoker getHandlerInvoker() {
 		return getInstance(HANDLER_INVOKER, DefaultHandlerInvoker.class);
+	}
+
+	public static ViewResolver getViewResolver() {
+		// TODO Auto-generated method stub
+		return getInstance(VIEW_RESOLVER, DefaultViewResolver.class);
+	}
+
+	public static HandlerExceptionResolver getHandlerExceptionResolver() {
+		// TODO Auto-generated method stub
+		return getInstance(HANDLER_EXCEPTION_RESOLVER, DefaultHandlerExceptionResolver.class);
 	}
 	
 }

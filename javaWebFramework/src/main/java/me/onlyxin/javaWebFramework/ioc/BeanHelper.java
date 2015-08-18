@@ -50,4 +50,10 @@ public class BeanHelper {
 	public static void setBean(Class<?> clazzKey, Object obj) {
 		beanMap.put(clazzKey, obj);
 	}
+	public static <T> T getBean(Class<?> clazzKey) {
+		if (!beanMap.containsKey(clazzKey)) {
+			throw new RuntimeException("实例为找到");
+		}
+		return (T) beanMap.get(clazzKey);
+	}
 }

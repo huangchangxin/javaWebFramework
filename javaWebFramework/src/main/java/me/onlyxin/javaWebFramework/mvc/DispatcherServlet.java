@@ -25,6 +25,8 @@ public class DispatcherServlet extends HttpServlet {
 	
 	private final HandlerInvoker handlerInvoker = InstanceFactory.getHandlerInvoker();
 	
+	private final HandlerExceptionResolver handlerExceptionResolver = InstanceFactory.getHandlerExceptionResolver();
+	
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -33,6 +35,9 @@ public class DispatcherServlet extends HttpServlet {
 		response.setContentType("text/html;charset="+Constant.UTF_8);
 		String method = request.getMethod();
 		String requestPath = WebUtil.getRequestPath(request);
+		if (logger.isDebugEnabled()) {
+			logger.debug("请求开始，请求方法为：method={}, requestPath={}", method, requestPath);
+		}
 		if (requestPath.equals("/")) {
 			WebUtil.redirectRequest(requestPath, request, response);
 		}
@@ -40,6 +45,22 @@ public class DispatcherServlet extends HttpServlet {
 			requestPath = requestPath.substring(0, requestPath.length()-1);
 		}
 		Handler handler = handlerMapping.getHandler(method, requestPath);
+		if (handler == null) {
+			WebUtil.sendError(HttpServletResponse.SC_NOT_FOUND, "", response);
+			return;
+		}
+		DataContext.init(request, response);
+		try {
+			handlerInvoker.invokeHandler(request, response, handler);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			handlerExceptionResolver.resolveHandlerException(request, response, e);
+		} finally {
+			DataContext.destroy();
+		}
+		if (logger.isDebugEnabled()) {
+			logger.debug("请求结束");
+		}
 	}
 	
 }

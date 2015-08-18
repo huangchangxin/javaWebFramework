@@ -37,4 +37,8 @@ public class StringUtil {
 		matcher.appendTail(stringBuffer);
 		return stringBuffer.toString();
 	}
+	
+	public static String[] splitString(String str, String separator) {
+		return StringUtils.splitByWholeSeparator(str, separator);
+	}
 }

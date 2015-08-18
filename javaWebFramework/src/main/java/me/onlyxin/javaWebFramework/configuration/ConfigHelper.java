@@ -19,4 +19,8 @@ public class ConfigHelper {
 	public static String getString(String key) {
 		return PropsUtil.getString(configuration, key);
 	}
+	
+	public static String getString(String key, String defaultValue) {
+		return PropsUtil.getString(configuration, key, defaultValue);
+	}
 }
