@@ -9,4 +9,6 @@ public interface Constant {
 	public static final String JSP_PATH = ConfigHelper.getString("jsp_path", "/WEB-INF/jsp/");
 	
 	public static final String HOME_PAGE = ConfigHelper.getString("home_page", "/index.html");
+	
+	public static final String WWW_PATH = ConfigHelper.getString("www_path", "/www/");
 }
