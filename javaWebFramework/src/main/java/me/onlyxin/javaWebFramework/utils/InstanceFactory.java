@@ -6,6 +6,10 @@ import java.util.concurrent.ConcurrentHashMap;
 import me.onlyxin.javaWebFramework.classScanner.ClassScanner;
 import me.onlyxin.javaWebFramework.classScanner.DefaultClassScanner;
 import me.onlyxin.javaWebFramework.configuration.ConfigHelper;
+import me.onlyxin.javaWebFramework.dao.DataAccessor;
+import me.onlyxin.javaWebFramework.dao.DataSourceFactory;
+import me.onlyxin.javaWebFramework.dao.DefaultDataAccessor;
+import me.onlyxin.javaWebFramework.dao.DefaultDataSourceFactory;
 import me.onlyxin.javaWebFramework.mvc.DefaultHandlerExceptionResolver;
 import me.onlyxin.javaWebFramework.mvc.DefaultHandlerInvoker;
 import me.onlyxin.javaWebFramework.mvc.DefaultHandlerMapping;
@@ -36,6 +40,10 @@ public class InstanceFactory {
 	private static final String VIEW_RESOLVER = "view_resolver";
 	//异常处理器
 	private static final String HANDLER_EXCEPTION_RESOLVER = "handler_exception_resolver";
+	//异常处理器
+	private static final String DATASOURCE_FACTORY = "datasource_factory";
+	//数据访问器
+	private static final String DATA_ACCESSOR = "data_accessor";
 	
 
 	//创建实例
@@ -77,4 +85,11 @@ public class InstanceFactory {
 		return getInstance(HANDLER_EXCEPTION_RESOLVER, DefaultHandlerExceptionResolver.class);
 	}
 	
+	public static DataSourceFactory getDataSourceFactory() {
+		return getInstance(DATASOURCE_FACTORY, DefaultDataSourceFactory.class);
+	}
+	
+	public static DataAccessor getDataAccessor() {
+		return getInstance(DATA_ACCESSOR, DefaultDataAccessor.class);
+	}
 }
