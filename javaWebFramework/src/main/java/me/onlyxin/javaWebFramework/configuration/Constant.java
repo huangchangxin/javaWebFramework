@@ -6,6 +6,8 @@ public interface Constant {
 	//主配置文件
 	public static final String CONFIG_PATH = "main.properties";
 	
+	public static final String SQL_PROPS = "sql.properties";
+	
 	public static final String JSP_PATH = ConfigHelper.getString("jsp_path", "/WEB-INF/jsp/");
 	
 	public static final String HOME_PAGE = ConfigHelper.getString("home_page", "/index.html");

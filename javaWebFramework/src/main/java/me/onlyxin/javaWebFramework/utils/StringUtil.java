@@ -41,4 +41,16 @@ public class StringUtil {
 	public static String[] splitString(String str, String separator) {
 		return StringUtils.splitByWholeSeparator(str, separator);
 	}
+	
+	public static String camelhumpToUnderline(String str) {
+		Matcher matcher = Pattern.compile("[A-Z]").matcher(str);
+		StringBuffer stringBuffer = new StringBuffer();
+		for (int i = 0; matcher.matches(); i++) {
+			stringBuffer.replace(matcher.start()+i, matcher.end()+i, "_" + matcher.group().toLowerCase());
+		}
+		if (stringBuffer.charAt(0) == '_') {
+			stringBuffer.deleteCharAt(0);
+		}
+		return stringBuffer.toString();
+	}
 }

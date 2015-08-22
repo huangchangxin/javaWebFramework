@@ -11,7 +11,7 @@ import me.onlyxin.javaWebFramework.utils.PropsUtil;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+//dao核心类
 public class DaoHelper {
 
 	//打印日志
@@ -48,48 +48,48 @@ public class DaoHelper {
 		return dataAccessor.queryEntity(entityClass, sql, params);
 	}
 	
-	public <T> List<T> queryEntityList(Class<T> entityClass, String sql,
+	public static <T> List<T> queryEntityList(Class<T> entityClass, String sql,
 			Object... params) {
 		return dataAccessor.queryEntityList(entityClass, sql, params);
 	}
 	
-	public <K, V> Map<K, V> queryEntityMap(Class<V> entiryClass, String sql,
+	public static <K, V> Map<K, V> queryEntityMap(Class<V> entiryClass, String sql,
 			Object... params) {
 		return dataAccessor.queryEntityMap(entiryClass, sql, params);
 	}
 	
-	public Object[] queryArray(String sql, Object... params) {
+	public static Object[] queryArray(String sql, Object... params) {
 		return dataAccessor.queryArray(sql, params);
 	}
 	
-	public List<Object[]> queryArrayList(String sql, Object... params) {
+	public static List<Object[]> queryArrayList(String sql, Object... params) {
 		return dataAccessor.queryArrayList(sql, params);
 	}
 	
-	public Map<String, Object> queryMap(String sql, Object... params) {
+	public static Map<String, Object> queryMap(String sql, Object... params) {
 		return dataAccessor.queryMap(sql, params);
 	}
 	
-	public List<Map<String, Object>> queryMapList(String sql, Object... params) {
+	public static List<Map<String, Object>> queryMapList(String sql, Object... params) {
 		return dataAccessor.queryMapList(sql, params);
 	}
-	public <T> T queryColumn(String sql, Object... params) {
+	public static <T> T queryColumn(String sql, Object... params) {
 		return dataAccessor.queryColumn(sql, params);
 	}
-	public <T> List<T> queryColumnList(String sql, Object... params) {
+	public static <T> List<T> queryColumnList(String sql, Object... params) {
 		return dataAccessor.queryColumnList(sql, params);
 	}
 	
-	public <T> Map<T, Map<String, Object>> queryColumnMap(String column,
+	public static <T> Map<T, Map<String, Object>> queryColumnMap(String column,
 			String sql, Object... params) {
 		return dataAccessor.queryColumnMap(column, sql, params);
 	}
 	
-	public int update(String sql, Object... params) {
+	public static int update(String sql, Object... params) {
 		return dataAccessor.update(sql, params);
 	}
 	
-	public long queryCount(String sql, Object... params) {
+	public static long queryCount(String sql, Object... params) {
 		return dataAccessor.queryCount(sql, params);
 	}
 }

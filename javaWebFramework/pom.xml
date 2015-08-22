@@ -61,6 +61,12 @@
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.8.3</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
 			<groupId>commons-dbutils</groupId>
 			<artifactId>commons-dbutils</artifactId>
 			<version>1.6</version>

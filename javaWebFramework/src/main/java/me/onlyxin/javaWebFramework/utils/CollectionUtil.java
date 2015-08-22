@@ -6,7 +6,7 @@ import org.apache.commons.collections4.CollectionUtils;
 
 public class CollectionUtil {
 
-	public static boolean isNotEmpty(Collection<Class<?>> collection) {
+	public static boolean isNotEmpty(Collection<?> collection) {
 		return CollectionUtils.isNotEmpty(collection);
 	}
 }
