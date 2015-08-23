@@ -16,6 +16,8 @@ import java.util.function.ToLongFunction;
 import me.onlyxin.javaWebFramework.classScanner.ClassScanner;
 import me.onlyxin.javaWebFramework.ioc.BeanHelper;
 import me.onlyxin.javaWebFramework.ioc.ClassHelper;
+import me.onlyxin.javaWebFramework.tx.Service;
+import me.onlyxin.javaWebFramework.tx.TransactionProxy;
 import me.onlyxin.javaWebFramework.utils.ClassUtil;
 import me.onlyxin.javaWebFramework.utils.InstanceFactory;
 import me.onlyxin.javaWebFramework.utils.StringUtil;
@@ -54,7 +56,15 @@ public class AopHelper {
 		LinkedHashMap<Class<?>, List<Class<?>>> proxyTargetMap = new LinkedHashMap<Class<?>, List<Class<?>>>();
 		//添加切面代理
 		addAspectProxy(proxyTargetMap);
+        //添加事务代理
+		addTransactionProxy(proxyTargetMap);
 		return proxyTargetMap;
+	}
+	private static void addTransactionProxy(
+			LinkedHashMap<Class<?>, List<Class<?>>> proxyTargetMap) {
+		// TODO Auto-generated method stub
+		List<Class<?>> serviceClassList = ClassHelper.getClassListByAnnotation(Service.class);
+		proxyTargetMap.put(TransactionProxy.class, serviceClassList);
 	}
 	//创建目标类与代理类的对应关系
 	private static Map<Class<?>, List<Proxy>> createTargetProxyMap(

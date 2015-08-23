@@ -1,6 +1,7 @@
 package me.onlyxin.javaWebFramework.dao;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -42,6 +43,53 @@ public class DaoHelper {
 			throw new RuntimeException(e);
 		}
 		return conn;
+	}
+	
+	public static void beginTransaction() {
+		Connection conn = getConnection();
+		if (conn != null) {
+			try {
+				conn.setAutoCommit(false);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				logger.error("开启事务出错", e);
+				throw new RuntimeException(e);
+			} finally {
+				connContainer.set(conn);
+			}
+		}
+	}
+	
+	public static void commitTransaction() {
+		Connection conn = getConnection();
+		if (conn != null) {
+			try {
+				conn.commit();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				logger.error("提交事务出错", e);
+				throw new RuntimeException(e);
+			} finally {
+				connContainer.remove();
+			}
+		}
+	}
+	
+	public static void rollbackTransaction() {
+		Connection conn = getConnection();
+		if (conn != null) {
+			try {
+				conn.rollback();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				logger.error("回滚事务出错", e);
+				throw new RuntimeException(e);
+			} finally {
+				connContainer.remove();
+			}
+		}
 	}
 	
 	public static <T> T queryEntity(Class<T> entityClass, String sql, Object... params) {
